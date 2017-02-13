@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gate proj", "Assembly-CSharp.csproj", "{E5809C2A-C5AC-FE42-483A-87FAE3546F3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gate proj", "Assembly-CSharp-Editor.csproj", "{0CF6D99C-8C59-D4DC-B858-D0E49F3F564D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5809C2A-C5AC-FE42-483A-87FAE3546F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5809C2A-C5AC-FE42-483A-87FAE3546F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5809C2A-C5AC-FE42-483A-87FAE3546F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5809C2A-C5AC-FE42-483A-87FAE3546F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF6D99C-8C59-D4DC-B858-D0E49F3F564D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF6D99C-8C59-D4DC-B858-D0E49F3F564D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF6D99C-8C59-D4DC-B858-D0E49F3F564D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF6D99C-8C59-D4DC-B858-D0E49F3F564D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
