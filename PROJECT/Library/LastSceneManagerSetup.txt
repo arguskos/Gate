@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/aha.unity
+- path: Assets/ViveGrip/Examples/Demo.unity
   isLoaded: 1
   isActive: 1
