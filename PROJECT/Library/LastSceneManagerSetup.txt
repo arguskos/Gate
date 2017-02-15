@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/GripTest.unity
+- path: Assets/aha.unity
   isLoaded: 1
   isActive: 1
