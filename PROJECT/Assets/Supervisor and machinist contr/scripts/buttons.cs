@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class buttons : MonoBehaviour {
 
+    public Camera[] cameras = new Camera[4];
+    public byte currCam = 0;
+
 	// Use this for initialization
 	void Start () {
-	}
+        cameras[0].enabled = true;
+        cameras[1].enabled = false;
+        cameras[2].enabled = false;
+        cameras[3].enabled = false;
+    }
+
 	
 	// Update is called once per frame
 	void Update ()
     {
-        #region 
+        #region Button Input
         #region Button bools
 
         //Constructor side
@@ -229,7 +237,7 @@ public class buttons : MonoBehaviour {
         #endregion
 
         //ouput constructor
-        #region twoZero
+        #region down
         if (twoZeroButton == true)
         {
             //Debug.Log("twoZero : pressed and held");
@@ -245,7 +253,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoOne
+        #region right
         if (twoOneButton == true)
         {
             //Debug.Log("twoOne : pressed and held");
@@ -261,22 +269,23 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoTwo
+        #region action button 1
         if (twoTwoButton == true)
         {
-            Debug.Log("twoTwo : pressed and held");
+            //Debug.Log("twoTwo : pressed and held");
         }
         if (twoTwoDown == true)
         {
-            Debug.Log(" twoTwo : pressed once");
+            //Debug.Log(" twoTwo : pressed once");
+            Debug.Log("action 1");
         }
         if (twoTwoUp == true)
         {
-            Debug.Log("twoTwo : released");
+            //Debug.Log("twoTwo : released");
         }
         #endregion
 
-        #region twoThree
+        #region left
         if (twoThreeButton == true)
         {
             //Debug.Log("twoThree : pressed and held");
@@ -292,7 +301,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoFour
+        #region up
         if (twoFourButton == true)
         {
             //Debug.Log("twoFour : pressed and held");
@@ -308,22 +317,23 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoFive
+        #region action button 2
         if (twoFiveButton == true)
         {
-            Debug.Log("twoFive : pressed and held");
+            //Debug.Log("twoFive : pressed and held");
         }
         if (twoFiveDown == true)
         {
-            Debug.Log(" twoFive : pressed once");
+            //Debug.Log(" twoFive : pressed once");
+            Debug.Log("action 2");
         }
         if (twoFiveUp == true)
         {
-            Debug.Log("twoFive : released");
+            //Debug.Log("twoFive : released");
         }
         #endregion
 
-        #region twoSix
+        #region Camera toggle next
         if (twoSixButton == true)
         {
             //Debug.Log("twoSix : pressed and held");
@@ -332,6 +342,7 @@ public class buttons : MonoBehaviour {
         {
             //Debug.Log(" twosix : pressed once");
             Debug.Log("Toggle camera next");
+            cameraControl("next");
         }
         if (twoSixUp == true)
         {
@@ -339,7 +350,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoSeven
+        #region camera toggle back  
         if (twoSevenButton == true)
         {
             //Debug.Log("twoSeven : pressed and held");
@@ -348,6 +359,7 @@ public class buttons : MonoBehaviour {
         {
             //Debug.Log(" twoSeven : pressed once");
             Debug.Log("Toggle camera back");
+            cameraControl("back");
         }
         if (twoSevenUp == true)
         {
@@ -355,7 +367,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region twoEight
+        #region Light toggle
         if (twoEightButton == true)
         {
             //Debug.Log("twoEight : pressed and held");
@@ -373,6 +385,37 @@ public class buttons : MonoBehaviour {
 
         #endregion
         #endregion
+    }
 
-    } 
+    private void cameraControl(string input) 
+    {
+        byte newCam = currCam;
+        if (input == "next")
+        {
+            if (currCam >= 3)
+            {
+                newCam = 0;
+            }
+            else
+            {
+                newCam++;
+            }
+        }
+        else if (input == "back")
+        {
+            if (currCam <= 0)
+            {
+                newCam = 3;
+            }
+            else
+            {
+                newCam--;
+            }
+        }
+        cameras[currCam].enabled = false;
+        cameras[newCam].enabled = true;
+        currCam = newCam;
+
+    }
+
 }
