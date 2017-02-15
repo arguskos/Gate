@@ -5,7 +5,8 @@ using UnityEngine;
 public class buttons : MonoBehaviour {
 
     public Camera[] cameras = new Camera[4];
-    public byte currCam = 0;
+    public byte currCam = 1;
+    public GameObject shrinker;
 
 	// Use this for initialization
 	void Start () {
@@ -277,7 +278,8 @@ public class buttons : MonoBehaviour {
         if (twoTwoDown == true)
         {
             //Debug.Log(" twoTwo : pressed once");
-            Debug.Log("action 1");
+            buttonControl("act1");
+
         }
         if (twoTwoUp == true)
         {
@@ -325,7 +327,8 @@ public class buttons : MonoBehaviour {
         if (twoFiveDown == true)
         {
             //Debug.Log(" twoFive : pressed once");
-            Debug.Log("action 2");
+            buttonControl("act2");
+
         }
         if (twoFiveUp == true)
         {
@@ -415,7 +418,31 @@ public class buttons : MonoBehaviour {
         cameras[currCam].enabled = false;
         cameras[newCam].enabled = true;
         currCam = newCam;
-
+    }
+    private void buttonControl(string input) 
+    {
+        switch (currCam)
+        {
+            case 0 :
+                // send to main camera
+                break;
+            case 1 :
+                // send to shrinkcam
+                messageSender(input,shrinker);
+                break;
+            case 2 :
+                // send to ..
+                break;
+            case 3 :
+                //send to ...
+                break;
+            default:
+                break;
+        }
+    }
+    private void messageSender(string mssg, GameObject receiver) 
+    {
+        receiver.SendMessage("buttonPress",mssg);
     }
 
 }
