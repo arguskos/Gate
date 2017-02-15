@@ -10,10 +10,10 @@ public class buttons : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cameras[0].enabled = true;
-        cameras[1].enabled = false;
-        cameras[2].enabled = false;
-        cameras[3].enabled = false;
+        //cameras[0].enabled = true;
+        //cameras[1].enabled = false;
+        //cameras[2].enabled = false;
+        //cameras[3].enabled = false;
     }
 
 	
@@ -428,7 +428,7 @@ public class buttons : MonoBehaviour {
                 break;
             case 1 :
                 // send to shrinkcam
-                messageSender(input,shrinker);
+                messageSender(input, ref shrinker);
                 break;
             case 2 :
                 // send to ..
@@ -440,9 +440,10 @@ public class buttons : MonoBehaviour {
                 break;
         }
     }
-    private void messageSender(string mssg, GameObject receiver) 
+    private void messageSender(string mssg,ref GameObject rec)
     {
-        receiver.SendMessage("buttonPress",mssg);
+
+        rec.SendMessage("buttonPress", mssg);
     }
 
 }

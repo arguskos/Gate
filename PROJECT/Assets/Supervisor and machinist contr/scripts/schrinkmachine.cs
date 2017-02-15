@@ -17,11 +17,11 @@ public class schrinkmachine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.anyKeyDown == true)
-        {
-            Debug.Log("ahahahaha");
-            buttonPress("act2");
-        }
+       // if (Input.anyKeyDown == true)
+        //{
+          //  Debug.Log("ahahahaha");
+            //buttonPress("act2");
+        //}
 	}
     void OnTriggerEnter(Collider other)
     {
