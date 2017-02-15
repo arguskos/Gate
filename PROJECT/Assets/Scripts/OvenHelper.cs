@@ -21,7 +21,7 @@ public class OvenHelper : ViveGrip_Grabbable
         {
             if(transform.eulerAngles.y<359&& transform.eulerAngles.y >350)
             {
-                transform.eulerAngles = Vector3.zero;
+               // transform.eulerAngles = Vector3.zero;
             }
         }
     }
