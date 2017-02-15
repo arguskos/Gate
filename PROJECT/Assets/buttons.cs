@@ -11,18 +11,7 @@ public class buttons : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //bool a = Input.GetButtonDown("Side 1 Button 0");
-        //bool b = Input.GetButtonDown("Side 2 Button 0");
-
-        //if (a == true)
-        //{
-        //    Debug.Log("a");
-        //}
-        //if (b == true)
-        //{
-        //    Debug.Log("b");
-        //}
-        #region
+        #region 
         #region Button bools
 
         //Constructor side
@@ -243,30 +232,32 @@ public class buttons : MonoBehaviour {
         #region twoZero
         if (twoZeroButton == true)
         {
-            Debug.Log("twoZero : pressed and held");
+            //Debug.Log("twoZero : pressed and held");
+            Debug.Log("Down");
         }
         if (twoZeroDown == true)
         {
-            Debug.Log("twoZero : pressed once");
+            //Debug.Log("twoZero : pressed once");
         }
         if (twoZeroUp == true)
         {
-            Debug.Log("twoZero : released");
+            //Debug.Log("twoZero : released");
         }
         #endregion
 
         #region twoOne
         if (twoOneButton == true)
         {
-            Debug.Log("twoOne : pressed and held");
+            //Debug.Log("twoOne : pressed and held");
+            Debug.Log("Right");
         }
         if (twoOneDown == true)
         {
-            Debug.Log("twoOne : pressed once");
+            //Debug.Log("twoOne : pressed once");
         }
         if (twoOneUp == true)
         {
-            Debug.Log("twoOne : released");
+            //Debug.Log("twoOne : released");
         }
         #endregion
 
@@ -288,30 +279,32 @@ public class buttons : MonoBehaviour {
         #region twoThree
         if (twoThreeButton == true)
         {
-            Debug.Log("twoThree : pressed and held");
+            //Debug.Log("twoThree : pressed and held");
+            Debug.Log("Left");
         }
         if (twoThreeDown == true)
         {
-            Debug.Log(" twoThree : pressed once");
+            //Debug.Log(" twoThree : pressed once");
         }
         if (twoThreeUp == true)
         {
-            Debug.Log("twoThree : released");
+            //Debug.Log("twoThree : released");
         }
         #endregion
 
         #region twoFour
         if (twoFourButton == true)
         {
-            Debug.Log("twoFour : pressed and held");
+            //Debug.Log("twoFour : pressed and held");
+            Debug.Log("Up");
         }
         if (twoFourDown == true)
         {
-            Debug.Log(" twoFour : pressed once");
+            //Debug.Log(" twoFour : pressed once");
         }
         if (twoFourUp == true)
         {
-            Debug.Log("oneFour : released");
+            //Debug.Log("oneFour : released");
         }
         #endregion
 
@@ -333,45 +326,48 @@ public class buttons : MonoBehaviour {
         #region twoSix
         if (twoSixButton == true)
         {
-            Debug.Log("twoSix : pressed and held");
+            //Debug.Log("twoSix : pressed and held");
         }
         if (twoSixDown == true)
         {
-            Debug.Log(" twosix : pressed once");
+            //Debug.Log(" twosix : pressed once");
+            Debug.Log("Toggle camera next");
         }
         if (twoSixUp == true)
         {
-            Debug.Log("twoSix : released");
+            //Debug.Log("twoSix : released");
         }
         #endregion
 
         #region twoSeven
         if (twoSevenButton == true)
         {
-            Debug.Log("twoSeven : pressed and held");
+            //Debug.Log("twoSeven : pressed and held");
         }
         if (twoSevenDown == true)
         {
-            Debug.Log(" twoSeven : pressed once");
+            //Debug.Log(" twoSeven : pressed once");
+            Debug.Log("Toggle camera back");
         }
         if (twoSevenUp == true)
         {
-            Debug.Log("twoSeven : released");
+            //Debug.Log("twoSeven : released");
         }
         #endregion
 
         #region twoEight
         if (twoEightButton == true)
         {
-            Debug.Log("twoEight : pressed and held");
+            //Debug.Log("twoEight : pressed and held");
         }
         if (twoEightDown == true)
         {
-            Debug.Log(" twoEight : pressed once");
+            //Debug.Log(" twoEight : pressed once");
+            Debug.Log("turn on/off light");
         }
         if (twoEightUp == true)
         {
-            Debug.Log("twoEight : released");
+            //Debug.Log("twoEight : released");
         }
         #endregion
 
