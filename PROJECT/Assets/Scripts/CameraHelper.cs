@@ -45,12 +45,10 @@ Change the view using
 the buttons directly below the joystick";
                 break;
             case 4:
-                Title.GetComponent<Text>().text = "Overview 3";
-                Desc.GetComponent<Text>().text = @"Spawn package contents using
-the lower left button of the Machine Controls
-
-Change the view using 
-the buttons directly below the joystick";
+                Title.GetComponent<Text>().text = "Box refill station";
+                Desc.GetComponent<Text>().text = @"Spawn open boxes by
+pressing the top button 
+on the left of the joystick";
                 break;
             default:
                 //Console.WriteLine("Default case");

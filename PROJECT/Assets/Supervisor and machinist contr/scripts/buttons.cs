@@ -8,6 +8,9 @@ public class buttons : MonoBehaviour {
     public byte currCam = 0;
     public GameObject shrinker;
     public GameObject packer;
+    public GameObject box;
+    public Vector3 boxPos = new Vector3(0.34F, 2.3F, 0.79F);
+    public Vector3 boxRot = new Vector3(-90,0,0);
 
     // Use this for initialization
     void Start () {
@@ -462,14 +465,23 @@ public class buttons : MonoBehaviour {
             case 3 :
                 //send to ...
                 break;
+            case 4 :
+                spawnBox(input);
+                break;
             default:
                 break;
         }
     }
     private void messageSender(string mssg,ref GameObject rec)
     {
-
         rec.SendMessage("buttonPress", mssg);
+    }
+    private void spawnBox(string input) 
+    {
+        if (input == "act1")
+        {
+            Instantiate(box, boxPos, Quaternion.Euler(boxRot)); 
+        }        
     }
 
 }
