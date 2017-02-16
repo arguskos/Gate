@@ -20,9 +20,45 @@ public class KeyBordKeys : MonoBehaviour
     }
     void Update()
     {
+        // gamepad keys
+        bool oneZeroButton = Input.GetButton("Side 1 Button 0");//returns true while button is pressed
+        bool oneZeroDown = Input.GetButtonDown("Side 1 Button 0");//returns true once when button is pressed
+        bool oneZeroUp = Input.GetButtonUp("Side 1 Button 0");// returns true once when button is released
+
+        bool oneOneButton = Input.GetButton("Side 1 Button 1");
+        bool oneOneDown = Input.GetButtonDown("Side 1 Button 1");
+        bool oneOneUp = Input.GetButtonUp("Side 1 Button 1");
+
+        bool oneTwoButton = Input.GetButton("Side 1 Button 2");
+        bool oneTwoDown = Input.GetButtonDown("Side 1 Button 2");
+        bool oneTwoUp = Input.GetButtonUp("Side 1 Button 2");
+
+        bool oneThreeButton = Input.GetButton("Side 1 Button 3");
+        bool oneThreeDown = Input.GetButtonDown("Side 1 Button 3");
+        bool oneThreeUp = Input.GetButtonUp("Side 1 Button 3");
+
+        bool oneFourButton = Input.GetButton("Side 1 Button 4");
+        bool oneFourDown = Input.GetButtonDown("Side 1 Button 4");
+        bool oneFourUp = Input.GetButtonUp("Side 1 Button 4");
+
+        bool oneFiveButton = Input.GetButton("Side 1 Button 5");
+        bool oneFiveDown = Input.GetButtonDown("Side 1 Button 5");
+        bool oneFiveUp = Input.GetButtonUp("Side 1 Button 5");
+
+        bool oneSixButton = Input.GetButton("Side 1 Button 6");
+        bool oneSixDown = Input.GetButtonDown("Side 1 Button 6");
+        bool oneSixUp = Input.GetButtonUp("Side 1 Button 6");
+
+        bool oneSevenButton = Input.GetButton("Side 1 Button 7");
+        bool oneSevenDown = Input.GetButtonDown("Side 1 Button 7");
+        bool oneSevenUp = Input.GetButtonUp("Side 1 Button 7");
+
+        bool oneEightButton = Input.GetButton("Side 1 Button 8");
+        bool oneEightDown = Input.GetButtonDown("Side 1 Button 8");
+        bool oneEightUp = Input.GetButtonUp("Side 1 Button 8");
 
         // PORTAL KEYS
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || oneEightDown == true)
         //Debug.Log("Sdadsd");
         {
             // if (!Portal.GetComponent<PortalOpener>().GetIsOpen())
@@ -30,30 +66,30 @@ public class KeyBordKeys : MonoBehaviour
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(216, 39, 39)));
 
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || oneSevenDown == true)
         {
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 158, 39)));
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || oneSixDown ==  true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(172, 236, 43)));
 
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || oneFiveDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(33, 152, 33)));
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || oneFourDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(36, 255, 182)));
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || oneThreeDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(39, 158, 217)));
 
 
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || oneTwoDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(34, 34, 122)));
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || oneOneDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(157, 39, 217)));
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) || oneZeroDown == true)
             Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 39, 158)));
 
 
