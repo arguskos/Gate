@@ -17,4 +17,20 @@ public class BoxHelper : ViveGrip_Grabbable
         foreach (Transform child in transform)
             child.transform.GetComponent<ViveGrip_Grabbable>().enabled = false;
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Object")
+        {
+            other.GetComponent<ViveGrip_Grabbable>().enabled = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Object")
+        {
+            other.GetComponent<ViveGrip_Grabbable>().enabled = true;
+        }
+    }
 }

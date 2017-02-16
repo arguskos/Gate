@@ -10,22 +10,22 @@ public class schrinkmachine : MonoBehaviour {
     private byte TimesGrown = 0;
     private bool beingtampered = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-       // if (Input.anyKeyDown == true)
+    // Use this for initialization
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+        // if (Input.anyKeyDown == true)
         //{
-          //  Debug.Log("ahahahaha");
-            //buttonPress("act2");
+        //  Debug.Log("ahahahaha");
+        //buttonPress("act2");
         //}
-	}
+    }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Machinable")
+        if (other.tag == "Machinable"|| other.tag == "Object")
         {
             toShrinkObj = other;
             objectInSchrinker = true;
@@ -33,7 +33,7 @@ public class schrinkmachine : MonoBehaviour {
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Machinable")
+        if (other.tag == "Machinable" || other.tag == "Object")
         {
             objectInSchrinker = false;
         }

@@ -25,7 +25,7 @@ public class packager : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Machinable")
+        if (other.tag == "OpenPackage" )
         {
             toPackObj = other;
             objectInPacker = true;
@@ -38,7 +38,7 @@ public class packager : MonoBehaviour {
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Machinable")
+        if (other.tag == "OpenPackage" )
         {
             objectInPacker = false;
         }
@@ -57,7 +57,7 @@ public class packager : MonoBehaviour {
             Debug.Log("upwego");
             transform.Translate(Vector3.back * machineSpeed);
         }
-        if (objectInPacker == true)
+        if (objectInPacker )
         {
             Debug.Log("woop i git it");
 
@@ -76,13 +76,17 @@ public class packager : MonoBehaviour {
     }
     void packPac() 
     {
-        Vector3 pos = toPackObj.transform.position;
-        Quaternion rot = toPackObj.transform.rotation;
-        int id = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
-        Destroy(toPackObj.gameObject);
-        Destroy(toPackObj1.gameObject);
+        Debug.Log(toPackObj1.GetComponent<ViveGrip_Grabbable>().enabled);
+        if (!toPackObj1.GetComponent<ViveGrip_Grabbable>().enabled)
+        {
+            Vector3 pos = toPackObj.transform.position;
+            Quaternion rot = Quaternion.identity;
+            int id = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
+            Destroy(toPackObj.gameObject);
+            Destroy(toPackObj1.gameObject);
 
-        var obj =Instantiate(packedPackage,pos,rot);
-        obj.GetComponent<ObjectsPortalID>().PortalId = id;
+            var obj = Instantiate(packedPackage, pos, rot);
+            obj.GetComponent<ObjectsPortalID>().PortalId = id;
+        }
     }
 }
