@@ -4,22 +4,40 @@ using UnityEngine;
 
 public class buttons : MonoBehaviour {
 
-    public Camera[] cameras = new Camera[4];
-    public byte currCam = 1;
+    public Camera[] cameras = new Camera[5];
+    public byte currCam = 0;
     public GameObject shrinker;
 
 	// Use this for initialization
 	void Start () {
-        //cameras[0].enabled = true;
-        //cameras[1].enabled = false;
-        //cameras[2].enabled = false;
-        //cameras[3].enabled = false;
+        cameras[0].enabled = true;
+        cameras[1].enabled = false;
+        cameras[2].enabled = false;
+        cameras[3].enabled = false;
+        cameras[4].enabled = false;
     }
 
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetKeyDown("right"))
+        {
+            cameraControl("next");
+        }
+        if (Input.GetKeyDown("left"))
+        {
+            cameraControl("back");
+        }
+        if (Input.GetKeyDown("up"))
+        {
+            buttonControl("act1");
+        }
+        if (Input.GetKeyDown("down"))
+        {
+            buttonControl("act2");
+        }
+
         #region Button Input
         #region Button bools
 
@@ -395,7 +413,7 @@ public class buttons : MonoBehaviour {
         byte newCam = currCam;
         if (input == "next")
         {
-            if (currCam >= 3)
+            if (currCam >= 4)
             {
                 newCam = 0;
             }
@@ -408,7 +426,7 @@ public class buttons : MonoBehaviour {
         {
             if (currCam <= 0)
             {
-                newCam = 3;
+                newCam = 4;
             }
             else
             {
