@@ -20,7 +20,9 @@ public class PortalOpener : MonoBehaviour
 
     private float _timer;
     public bool Opening = false;
-    private float MaxTime=1;
+    private float MaxTime = 1.2f;
+
+
     // Use this for initialization
     public bool GetIsOpen()
     {
@@ -32,11 +34,11 @@ public class PortalOpener : MonoBehaviour
         ///StartCoroutine("Open", Color.red);
 
     }
-    public void Open(Color color )
+    public void Open(Color color)
     {
         portal.GetComponent<Renderer>().material.color = color;
         Opening = true;
-        
+
 
     }
     public void Close()
@@ -50,10 +52,10 @@ public class PortalOpener : MonoBehaviour
         Debug.Log("Open");
         if (_timer < MaxTime)
         {
-            part1.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
-            part2.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
-            part3.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
-            part4.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
+            part1.GetComponent<Transform>().Translate(Vector3.forward / 3 * Time.deltaTime);
+            part2.GetComponent<Transform>().Translate(Vector3.forward / 3 * Time.deltaTime);
+            part3.GetComponent<Transform>().Translate(Vector3.forward / 3 * Time.deltaTime);
+            part4.GetComponent<Transform>().Translate(Vector3.forward / 3 * Time.deltaTime);
         }
         else
         {
@@ -65,7 +67,7 @@ public class PortalOpener : MonoBehaviour
     {
 
         _timer -= Time.deltaTime;
-        if (_timer >0)
+        if (_timer > 0.0f)
         {
             part1.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
             part2.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
@@ -145,7 +147,7 @@ public class PortalOpener : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Machinable")
+        if (other.tag == "Machinable")
             Destroy(other.gameObject);
     }
     void Update()

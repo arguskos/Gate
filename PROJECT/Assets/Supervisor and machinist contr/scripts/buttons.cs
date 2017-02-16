@@ -433,6 +433,8 @@ public class buttons : MonoBehaviour {
                 newCam--;
             }
         }
+        GetComponent<CameraHelper>().OnChangeCamera(newCam);
+
         cameras[currCam].enabled = false;
         cameras[newCam].enabled = true;
         currCam = newCam;
