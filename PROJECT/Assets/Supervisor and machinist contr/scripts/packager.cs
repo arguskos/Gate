@@ -6,6 +6,8 @@ public class packager : MonoBehaviour {
 
     private bool objectInPacker = false;
     private Collider toPackObj;
+    private Collider toPackObj1;
+
     public GameObject  thisMachine;
     public GameObject packedPackage;
     public float machineSpeed = 0.005F;
@@ -26,6 +28,11 @@ public class packager : MonoBehaviour {
         if (other.tag == "Machinable")
         {
             toPackObj = other;
+            objectInPacker = true;
+        }
+        if (other.tag == "Object")
+        {
+            toPackObj1 = other;
             objectInPacker = true;
         }
     }
@@ -71,7 +78,11 @@ public class packager : MonoBehaviour {
     {
         Vector3 pos = toPackObj.transform.position;
         Quaternion rot = toPackObj.transform.rotation;
+        int id = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
         Destroy(toPackObj.gameObject);
-        Instantiate(packedPackage,pos,rot);
+        Destroy(toPackObj1.gameObject);
+
+        var obj =Instantiate(packedPackage,pos,rot);
+        obj.GetComponent<ObjectsPortalID>().PortalId = id;
     }
 }

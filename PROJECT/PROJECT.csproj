@@ -196,6 +196,7 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
     <Compile Include="Assets\Supervisor and machinist contr\scripts\buttons.cs" />
+    <Compile Include="Assets\Supervisor and machinist contr\scripts\packager.cs" />
     <Compile Include="Assets\Supervisor and machinist contr\scripts\schrinkmachine.cs" />
     <Compile Include="Assets\ViveGrip\Examples\Scripts\ViveGripExample_Bubble.cs" />
     <Compile Include="Assets\ViveGrip\Examples\Scripts\ViveGripExample_Bubbler.cs" />

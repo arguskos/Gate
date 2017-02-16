@@ -21,7 +21,7 @@ public class PortalOpener : MonoBehaviour
     private float _timer;
     public bool Opening = false;
     private float MaxTime = 1.2f;
-
+    private int _id;
 
     // Use this for initialization
     public bool GetIsOpen()
@@ -34,11 +34,11 @@ public class PortalOpener : MonoBehaviour
         ///StartCoroutine("Open", Color.red);
 
     }
-    public void Open(Color color)
+    public void Open(Color color, int id)
     {
         portal.GetComponent<Renderer>().material.color = color;
         Opening = true;
-
+        _id = id;
 
     }
     public void Close()
@@ -147,7 +147,7 @@ public class PortalOpener : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Machinable")
+        if (other.tag == "Machinable"&&other.GetComponent<ObjectsPortalID>().PortalId==_id)
             Destroy(other.gameObject);
     }
     void Update()

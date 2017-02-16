@@ -63,34 +63,34 @@ public class KeyBordKeys : MonoBehaviour
         {
             // if (!Portal.GetComponent<PortalOpener>().GetIsOpen())
             //Portal.GetComponent<PortalOpener>().StartCoroutine("Open", ColConv(new Color(255, 39, 39)));
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(216, 39, 39)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(216, 39, 39)),1);
 
         }
         if (Input.GetKeyDown(KeyCode.W) || oneSevenDown == true)
         {
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 158, 39)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 158, 39)), 2);
         }
         if (Input.GetKeyDown(KeyCode.E) || oneSixDown ==  true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(172, 236, 43)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(172, 236, 43)), 3);
 
 
         if (Input.GetKeyDown(KeyCode.A) || oneFiveDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(33, 152, 33)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(33, 152, 33)), 4);
 
         if (Input.GetKeyDown(KeyCode.S) || oneFourDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(36, 255, 182)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(36, 255, 182)), 5);
 
         if (Input.GetKeyDown(KeyCode.D) || oneThreeDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(39, 158, 217)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(39, 158, 217)), 6);
 
 
 
         if (Input.GetKeyDown(KeyCode.Z) || oneTwoDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(34, 34, 122)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(34, 34, 122)), 7);
         if (Input.GetKeyDown(KeyCode.X) || oneOneDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(157, 39, 217)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(157, 39, 217)), 8);
         if (Input.GetKeyDown(KeyCode.C) || oneZeroDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 39, 158)));
+            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 39, 158)),9);
 
 
 
@@ -111,7 +111,8 @@ public class KeyBordKeys : MonoBehaviour
 
             Input.GetKeyUp(KeyCode.Z) ||
             Input.GetKeyUp(KeyCode.X) ||
-            Input.GetKeyUp(KeyCode.C)
+            Input.GetKeyUp(KeyCode.C) || 
+            oneEightUp || oneSevenUp || oneSixUp || oneFiveUp || oneFourUp || oneThreeUp || oneTwoUp || oneOneUp || oneZeroUp
             )
         //if (Portal.GetComponent<PortalOpener>().GetIsOpen())
         //Portal.GetComponent<PortalOpener>().StartCoroutine("Close");

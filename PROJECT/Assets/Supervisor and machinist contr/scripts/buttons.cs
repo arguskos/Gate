@@ -7,9 +7,10 @@ public class buttons : MonoBehaviour {
     public Camera[] cameras = new Camera[5];
     public byte currCam = 0;
     public GameObject shrinker;
+    public GameObject packer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         cameras[0].enabled = true;
         cameras[1].enabled = false;
         cameras[2].enabled = false;
@@ -29,13 +30,17 @@ public class buttons : MonoBehaviour {
         {
             cameraControl("back");
         }
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKey("up"))
+        {
+            buttonControl("up");
+        }
+        if (Input.GetKey("down"))
+        {
+            buttonControl("down");
+        }
+        if (Input.GetKeyDown("space"))
         {
             buttonControl("act1");
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            buttonControl("act2");
         }
 
         #region Button Input
@@ -260,7 +265,7 @@ public class buttons : MonoBehaviour {
         if (twoZeroButton == true)
         {
             //Debug.Log("twoZero : pressed and held");
-            Debug.Log("Down");
+            buttonControl("down");
         }
         if (twoZeroDown == true)
         {
@@ -325,7 +330,7 @@ public class buttons : MonoBehaviour {
         if (twoFourButton == true)
         {
             //Debug.Log("twoFour : pressed and held");
-            Debug.Log("Up");
+            buttonControl("up");
         }
         if (twoFourDown == true)
         {
@@ -452,6 +457,7 @@ public class buttons : MonoBehaviour {
                 break;
             case 2 :
                 // send to ..
+                messageSender(input, ref packer);
                 break;
             case 3 :
                 //send to ...
