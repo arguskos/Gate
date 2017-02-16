@@ -81,12 +81,15 @@ public class packager : MonoBehaviour {
         {
             Vector3 pos = toPackObj.transform.position;
             Quaternion rot = Quaternion.identity;
-            int id = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
-            Destroy(toPackObj.gameObject);
-            Destroy(toPackObj1.gameObject);
+     
+      
 
             var obj = Instantiate(packedPackage, pos, rot);
-            obj.GetComponent<ObjectsPortalID>().PortalId = id;
+            obj.GetComponent<ObjectsPortalID>().PortalId = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
+            obj.GetComponent<ObjectsPortalID>().Object = toPackObj1.gameObject;
+
+            Destroy(toPackObj.gameObject);
+            Destroy(toPackObj1.gameObject);
         }
     }
 }

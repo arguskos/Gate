@@ -25,5 +25,16 @@ public class ObjectCreation : MonoBehaviour {
         var created=Instantiate(obj, transform.position, Quaternion.identity);
         created.GetComponent<Renderer>().material.color = col;
         created.GetComponent<ObjectsPortalID>().PortalId = id;
+        created.GetComponent<ViveGrip_Grabbable>().enabled = true;
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Object")
+            Spawn(other.gameObject, other.GetComponent<Renderer>().material.color, other.GetComponent<ObjectsPortalID>().PortalId);
+        if (other.tag == "Machinable")
+            Spawn(other.GetComponent<ObjectsPortalID>().Object, other.GetComponent<ObjectsPortalID>().Object.GetComponent<Renderer>().material.color, other.GetComponent<ObjectsPortalID>().PortalId);
+            
+    }
+
 }

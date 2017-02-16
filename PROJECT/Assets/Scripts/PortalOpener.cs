@@ -147,8 +147,11 @@ public class PortalOpener : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Machinable"&&other.GetComponent<ObjectsPortalID>().PortalId==_id)
+        if (other.tag == "Machinable" && other.GetComponent<ObjectsPortalID>().PortalId == _id)
+        {
+            other.GetComponent<ViveGrip_Grabbable>().enabled = false;
             Destroy(other.gameObject);
+        }
     }
     void Update()
     {
