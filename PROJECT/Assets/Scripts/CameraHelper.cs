@@ -24,23 +24,28 @@ Change the view using
 the buttons directly below the joystick";
                 break;
             case 1:
-                Title.GetComponent<Text>().text = "Someting";
-                Desc.GetComponent<Text>().text = @"Spawn package contents using
-the lower left button of the Machine Controls
-
-Change the view using 
-the buttons directly below the joystick";
+                Title.GetComponent<Text>().text = "Scaling Machine";
+                Desc.GetComponent<Text>().text = @"Use the buttons directly to 
+the left of the joystick to scale
+objects inside the machine";
                 break;
             case 2:
-                Title.GetComponent<Text>().text = "rekoqw";
+                Title.GetComponent<Text>().text = "Packaging Machine";
+                Desc.GetComponent<Text>().text = @"Use the joystick to
+move the packager entirely over an
+unpackaged box. Press the upper left button
+of the machine controls to package.";
+                break;
+            case 3:
+                Title.GetComponent<Text>().text = "Overview 2";
                 Desc.GetComponent<Text>().text = @"Spawn package contents using
 the lower left button of the Machine Controls
 
 Change the view using 
 the buttons directly below the joystick";
                 break;
-            case 3:
-                Title.GetComponent<Text>().text = "sadasd";
+            case 4:
+                Title.GetComponent<Text>().text = "Overview 3";
                 Desc.GetComponent<Text>().text = @"Spawn package contents using
 the lower left button of the Machine Controls
 
