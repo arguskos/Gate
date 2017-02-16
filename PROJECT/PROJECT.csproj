@@ -84,9 +84,14 @@
     <Compile Include="Assets\Scripts\BoxHelper.cs" />
     <Compile Include="Assets\Scripts\ConstarinRotation.cs" />
     <Compile Include="Assets\Scripts\DisplaysOn.cs" />
+    <Compile Include="Assets\Scripts\Gameflow.cs" />
+    <Compile Include="Assets\Scripts\KeyBordKeys.cs" />
     <Compile Include="Assets\Scripts\ObjectCreation.cs" />
+    <Compile Include="Assets\Scripts\ObjectsPortalID.cs" />
     <Compile Include="Assets\Scripts\OvenHelper.cs" />
     <Compile Include="Assets\Scripts\OvenInteraction.cs" />
+    <Compile Include="Assets\Scripts\PackageHelper.cs" />
+    <Compile Include="Assets\Scripts\PortalOpener.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
