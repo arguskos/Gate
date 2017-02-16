@@ -16,6 +16,11 @@ public class PortalOpener : MonoBehaviour
     private bool _isOpening = false;
     private bool _isClosing = false;
 
+
+
+    private float _timer;
+    public bool Opening = false;
+    private float MaxTime=1;
     // Use this for initialization
     public bool GetIsOpen()
     {
@@ -27,71 +32,116 @@ public class PortalOpener : MonoBehaviour
         ///StartCoroutine("Open", Color.red);
 
     }
-
-    // Update is called once per frame
-    public IEnumerator Open(Color color)
+    public void Open(Color color )
     {
-        if (!_isOpening)
-        {
-            portal.GetComponent<Renderer>().material.color = color;
-            _isOpening = true;
-            for (float i = 0; i < TimeToOpen; i += 0.1f)
-            {
-
-                part1.GetComponent<Transform>().Translate(Vector3.forward / 444);
-                part2.GetComponent<Transform>().Translate(Vector3.forward / 444);
-                part3.GetComponent<Transform>().Translate(Vector3.forward / 444);
-                part4.GetComponent<Transform>().Translate(Vector3.forward / 444);
-
-                yield return null;
-            }
-            _isOpen = true;
-            _isOpening = false;
-        }
-        //float _timer = 0;
-        //Debug.Log("open");
-        //if (_isOpen)
-        //    yield return null;
-        //_timer += Time.deltaTime;
-
-        //part1.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
-        //part2.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
-        //part3.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
-        //part4.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
-
-        //if (_timer > TimeToOpen)
-        //{
-        //    _isOpen = true;
-        //    _timer = 0;
-        //}
-        //yield return null;
+        portal.GetComponent<Renderer>().material.color = color;
+        Opening = true;
+        
 
     }
-
-    public IEnumerator Close()
+    public void Close()
+    {
+        Opening = false;
+    }
+    private void OpenInternal()
     {
 
-        if (!_isClosing)
+        _timer += Time.deltaTime;
+        Debug.Log("Open");
+        if (_timer < MaxTime)
         {
-            _isClosing = true;
-
-            for (float i = 0; i < TimeToOpen; i += 0.1f)
-            {
-
-                part1.GetComponent<Transform>().Translate(-Vector3.forward / 444);
-                part2.GetComponent<Transform>().Translate(-Vector3.forward / 444);
-                part3.GetComponent<Transform>().Translate(-Vector3.forward / 444);
-                part4.GetComponent<Transform>().Translate(-Vector3.forward / 444);
-
-                yield return null;
-            }
-
-            _isOpen = false;
-            _isClosing = false;
+            part1.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
+            part2.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
+            part3.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
+            part4.GetComponent<Transform>().Translate(Vector3.forward/3 *Time.deltaTime);
         }
-
-
+        else
+        {
+            _timer = MaxTime;
+        }
     }
+
+    private void CloseIntrnal()
+    {
+
+        _timer -= Time.deltaTime;
+        if (_timer >0)
+        {
+            part1.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
+            part2.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
+            part3.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
+            part4.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
+        }
+        else
+        {
+            _timer = 0;
+        }
+    }
+
+    //// Update is called once per frame
+    //public IEnumerator Open(Color color)
+    //{
+    //    if (!_isOpening)
+    //    {
+    //        portal.GetComponent<Renderer>().material.color = color;
+    //        _isOpening = true;
+    //        for (float i = 0; i < TimeToOpen; i += 0.1f)
+    //        {
+
+    //            part1.GetComponent<Transform>().Translate(Vector3.forward / 444);
+    //            part2.GetComponent<Transform>().Translate(Vector3.forward / 444);
+    //            part3.GetComponent<Transform>().Translate(Vector3.forward / 444);
+    //            part4.GetComponent<Transform>().Translate(Vector3.forward / 444);
+
+    //            yield return null;
+    //        }
+    //        _isOpen = true;
+    //        _isOpening = false;
+    //    }
+    //    //float _timer = 0;
+    //    //Debug.Log("open");
+    //    //if (_isOpen)
+    //    //    yield return null;
+    //    //_timer += Time.deltaTime;
+
+    //    //part1.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
+    //    //part2.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
+    //    //part3.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
+    //    //part4.GetComponent<Transform>().Translate(Vector3.forward / 4 * Time.deltaTime);
+
+    //    //if (_timer > TimeToOpen)
+    //    //{
+    //    //    _isOpen = true;
+    //    //    _timer = 0;
+    //    //}
+    //    //yield return null;
+
+    //}
+
+    //public IEnumerator Close()
+    //{
+
+    //    if (!_isClosing)
+    //    {
+    //        _isClosing = true;
+
+    //        for (float i = 0; i < TimeToOpen; i += 0.1f)
+    //        {
+
+    //            part1.GetComponent<Transform>().Translate(-Vector3.forward / 444);
+    //            part2.GetComponent<Transform>().Translate(-Vector3.forward / 444);
+    //            part3.GetComponent<Transform>().Translate(-Vector3.forward / 444);
+    //            part4.GetComponent<Transform>().Translate(-Vector3.forward / 444);
+
+    //            yield return null;
+    //        }
+
+    //        _isOpen = false;
+    //        _isClosing = false;
+    //    }
+
+
+    //}
 
     void OnTriggerEnter(Collider other)
     {
@@ -102,6 +152,9 @@ public class PortalOpener : MonoBehaviour
     {
 
 
-
+        if (Opening)
+            OpenInternal();
+        else
+            CloseIntrnal();
     }
 }
