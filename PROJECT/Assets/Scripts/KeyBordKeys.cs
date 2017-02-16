@@ -57,6 +57,10 @@ public class KeyBordKeys : MonoBehaviour
         bool oneEightDown = Input.GetButtonDown("Side 1 Button 8");
         bool oneEightUp = Input.GetButtonUp("Side 1 Button 8");
 
+        bool twoEightButton = Input.GetButton("Side 2 Button 8");
+        bool twoEightDown = Input.GetButtonDown("Side 2 Button 8");
+        bool twoEightUp = Input.GetButtonUp("Side 2 Button 8");
+
         // PORTAL KEYS
         if (Input.GetKeyDown(KeyCode.Q) || oneEightDown == true)
         //Debug.Log("Sdadsd");
@@ -95,7 +99,7 @@ public class KeyBordKeys : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || twoEightDown)
             //Debug.Log("sdas");
             Gameflow.GetComponent<Gameflow>().Spawn();
 
