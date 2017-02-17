@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectCreation : MonoBehaviour {
-   // public GameObject[] ToCreate;
-   // private float _timer;
+    // public GameObject[] ToCreate;
+    // private float _timer;
     //public float MaxTime=3; 
-	// Use this for initialization
+    // Use this for initialization
+    public GameObject box;
+    public Color[] Colors;
 	void Start () {
 		
 	}
@@ -20,10 +22,10 @@ public class ObjectCreation : MonoBehaviour {
         //    Instantiate(ToCreate[0], transform.position, Quaternion.identity);
         //}
 	}
-    public void Spawn(GameObject obj,Color col,int id)
+    public void Spawn(GameObject obj,int id)
     {
         var created=Instantiate(obj, transform.position, Quaternion.identity);
-        created.GetComponent<Renderer>().material.color = col;
+        created.GetComponent<Renderer>().material.color = Colors[id-1];
         created.GetComponent<ObjectsPortalID>().PortalId = id;
         created.GetComponent<ViveGrip_Grabbable>().enabled = true;
     }
@@ -31,9 +33,9 @@ public class ObjectCreation : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Object")
-            Spawn(other.gameObject, other.GetComponent<Renderer>().material.color, other.GetComponent<ObjectsPortalID>().PortalId);
+            Spawn(other.gameObject, other.GetComponent<ObjectsPortalID>().PortalId);
         if (other.tag == "Machinable")
-            Spawn(other.GetComponent<ObjectsPortalID>().Object, other.GetComponent<ObjectsPortalID>().Object.GetComponent<Renderer>().material.color, other.GetComponent<ObjectsPortalID>().PortalId);
+            Spawn(box, other.GetComponent<ObjectsPortalID>().PortalId);
             
     }
 

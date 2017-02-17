@@ -145,13 +145,15 @@ public class PortalOpener : MonoBehaviour
 
     //}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Machinable" && other.GetComponent<ObjectsPortalID>().PortalId == _id)
+        if (other.tag == "Machinable" && other.GetComponent<ObjectsPortalID>().PortalId == _id&& !other.GetComponent<ViveGrip_Grabbable>().Grabbed)
         {
-            other.GetComponent<ViveGrip_Grabbable>().enabled = false;
+            
             Destroy(other.gameObject);
         }
+        if (other.attachedRigidbody)
+            other.attachedRigidbody.AddForce(Vector3.right * 200);
     }
     void Update()
     {

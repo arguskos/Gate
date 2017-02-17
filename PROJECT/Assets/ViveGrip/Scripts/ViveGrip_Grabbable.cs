@@ -24,6 +24,7 @@ public class ViveGrip_Grabbable : MonoBehaviour {
   public Position anchor;
   public Rotation rotation;
   private Vector3 grabCentre;
+    public bool Grabbed = false;
 
   void Start() {
     ViveGrip_Highlighter.AddTo(gameObject);
@@ -36,8 +37,8 @@ public class ViveGrip_Grabbable : MonoBehaviour {
   //   void ViveGripTouchStop(ViveGrip_GripPoint gripPoint) {}
 
   // Called when touched and the grab button is pressed and released, respectively
-  //   void ViveGripGrabStart(ViveGrip_GripPoint gripPoint) {}
-  //   void ViveGripGrabStop(ViveGrip_GripPoint gripPoint) {}
+     void ViveGripGrabStart(ViveGrip_GripPoint gripPoint) { Grabbed = true; }
+     void ViveGripGrabStop(ViveGrip_GripPoint gripPoint) { Grabbed = false; }
 
   // Called when highlighting changes
   //   void ViveGripHighlightStart(ViveGrip_GripPoint gripPoint) {}

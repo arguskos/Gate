@@ -86,7 +86,7 @@ public class packager : MonoBehaviour {
 
             var obj = Instantiate(packedPackage, pos, rot);
             obj.GetComponent<ObjectsPortalID>().PortalId = toPackObj1.GetComponent<ObjectsPortalID>().PortalId;
-            obj.GetComponent<ObjectsPortalID>().Object = toPackObj1.gameObject;
+
 
             Destroy(toPackObj.gameObject);
             Destroy(toPackObj1.gameObject);

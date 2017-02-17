@@ -10,9 +10,7 @@ public class Gameflow : MonoBehaviour {
     private int _currentObject;
     public int[] LevelAmmountIems;
     public GameObject[] GameObjects ;
-    public int[]  PortalIDs;
 
-    public Color[] Colors;
     public GameObject ObjectSpawner;
     public bool GameOver = false;
 	void Start () {
@@ -27,7 +25,8 @@ public class Gameflow : MonoBehaviour {
     {
         if (!GameOver)
         {
-            ObjectSpawner.GetComponent<ObjectCreation>().Spawn(GameObjects[_currentObject], Colors[_currentObject], PortalIDs[_currentObject]);
+            int id = Random.Range(1, 10);
+            ObjectSpawner.GetComponent<ObjectCreation>().Spawn(GameObjects[_currentObject], id);
             _currentObject++;
             if (_currentObject >= LevelAmmountIems[_level])
             {
