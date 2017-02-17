@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
 
 
     //Initialize
     public AudioSource[] soundArray = new AudioSource[9];
 
+    public enum Sound { Button, Error, GateLoop, GateClose, GateOpen, Thu, Fri };
 
     //Play sound function
-    void PlaySound(string soundName)
+    public void PlaySound(string soundName)
     {
-        for(int i = 0; i < soundArray.Length; i++)
+        for (int i = 0; i < soundArray.Length; i++)
         {
             if (soundArray[i].name == soundName)
             {
@@ -20,9 +22,14 @@ public class SoundManager : MonoBehaviour {
             }
         }
     }
+    public void PlaySound(Sound soundName)
+    {
 
+        soundArray[(int)soundName].Play();
+
+    }
     //Loop sound function
-    void ToggleLoop(string loopName)
+    public void ToggleLoop(string loopName)
     {
         for (int i = 0; i < soundArray.Length; i++)
         {
@@ -37,6 +44,23 @@ public class SoundManager : MonoBehaviour {
             }
         }
     }
+
+
+    public void ToggleLoop(Sound soundName)
+    {
+
+        if ((!soundArray[(int)soundName].isPlaying))
+        {
+            soundArray[(int)soundName].Play();
+        }
+
+        else
+        {
+            soundArray[(int)soundName].Stop();
+        }
+
+    }
+
 
 
     //Example of use

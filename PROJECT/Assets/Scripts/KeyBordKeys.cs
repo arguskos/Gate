@@ -6,10 +6,26 @@ public class KeyBordKeys : MonoBehaviour
 {
     public GameObject Portal;
     public GameObject Gameflow;
-
+    public SoundManager SundManager;
+    public List<Color> Colors =new List<Color>();
+    private int _portalId = 1;
     // Use this for initialization
     void Start()
     {
+        Colors.Add((ColConv(new Color(216, 39, 39))));
+        Colors.Add((ColConv(new Color(217, 158, 39))));
+        Colors.Add((ColConv(new Color(172, 236, 43))));
+
+        Colors.Add((ColConv(new Color(33, 152, 33))));
+        Colors.Add((ColConv(new Color(36, 255, 182))));
+        Colors.Add((ColConv(new Color(39, 158, 217))));
+
+        Colors.Add((ColConv(new Color(34, 34, 122))));
+        Colors.Add((ColConv(new Color(157, 39, 217))));
+        Colors.Add((ColConv(new Color(217, 39, 158))));
+
+
+
 
     }
 
@@ -67,56 +83,77 @@ public class KeyBordKeys : MonoBehaviour
         {
             // if (!Portal.GetComponent<PortalOpener>().GetIsOpen())
             //Portal.GetComponent<PortalOpener>().StartCoroutine("Open", ColConv(new Color(255, 39, 39)));
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(216, 39, 39)),1);
+            //Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(216, 39, 39)),1);
+            //SundManager.PlaySound("GateOpen");
+            if (_portalId>1)
+            {
+                _portalId--;
+            }
+            else
+            {
+                _portalId = 9;
+            }
+            Portal.GetComponent<PortalOpener>().ChangeColor(Colors[_portalId-1]);
+            SundManager.PlaySound("Button");
+
 
         }
         if (Input.GetKeyDown(KeyCode.W) || oneSevenDown == true)
         {
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 158, 39)), 2);
+            //Portal.GetComponent<PortalOpener>().Open();
+            if (_portalId<9)
+            {
+                _portalId++;
+            }
+            else
+            {
+                _portalId = 1;
+            }
+            Portal.GetComponent<PortalOpener>().ChangeColor(Colors[_portalId-1]);
+            SundManager.PlaySound("Button");
+
         }
-        if (Input.GetKeyDown(KeyCode.E) || oneSixDown ==  true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(172, 236, 43)), 3);
+        if (Input.GetKeyDown(KeyCode.E) || oneSixDown == true)
+        {
+            Portal.GetComponent<PortalOpener>().Open(_portalId);
+            SundManager.PlaySound(SoundManager.Sound.GateOpen);
+        }
+        //if (Input.GetKeyDown(KeyCode.A) || oneFiveDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(33, 152, 33)), 4);
+
+        //if (Input.GetKeyDown(KeyCode.S) || oneFourDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(36, 255, 182)), 5);
+
+        //if (Input.GetKeyDown(KeyCode.D) || oneThreeDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(39, 158, 217)), 6);
 
 
-        if (Input.GetKeyDown(KeyCode.A) || oneFiveDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(33, 152, 33)), 4);
 
-        if (Input.GetKeyDown(KeyCode.S) || oneFourDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(36, 255, 182)), 5);
-
-        if (Input.GetKeyDown(KeyCode.D) || oneThreeDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(39, 158, 217)), 6);
-
-
-
-        if (Input.GetKeyDown(KeyCode.Z) || oneTwoDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(34, 34, 122)), 7);
-        if (Input.GetKeyDown(KeyCode.X) || oneOneDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(157, 39, 217)), 8);
-        if (Input.GetKeyDown(KeyCode.C) || oneZeroDown == true)
-            Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 39, 158)),9);
+        //if (Input.GetKeyDown(KeyCode.Z) || oneTwoDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(34, 34, 122)), 7);
+        //if (Input.GetKeyDown(KeyCode.X) || oneOneDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(157, 39, 217)), 8);
+        //if (Input.GetKeyDown(KeyCode.C) || oneZeroDown == true)
+        //    Portal.GetComponent<PortalOpener>().Open(ColConv(new Color(217, 39, 158)),9);
 
 
 
 
         if (Input.GetKeyDown(KeyCode.R) || twoEightDown)
-            //Debug.Log("sdas");
+        //Debug.Log("sdas");
+        {
             Gameflow.GetComponent<Gameflow>().Spawn();
+            SundManager.PlaySound("Button");
+
+        }
 
 
-
-        if (Input.GetKeyUp(KeyCode.Q) ||
-            Input.GetKeyUp(KeyCode.W) ||
+        if (
+            
             Input.GetKeyUp(KeyCode.E) ||
 
-            Input.GetKeyUp(KeyCode.A) ||
-            Input.GetKeyUp(KeyCode.S) ||
-            Input.GetKeyUp(KeyCode.D) ||
 
-            Input.GetKeyUp(KeyCode.Z) ||
-            Input.GetKeyUp(KeyCode.X) ||
-            Input.GetKeyUp(KeyCode.C) || 
-            oneEightUp || oneSevenUp || oneSixUp || oneFiveUp || oneFourUp || oneThreeUp || oneTwoUp || oneOneUp || oneZeroUp
+           oneSixUp 
             )
         //if (Portal.GetComponent<PortalOpener>().GetIsOpen())
         //Portal.GetComponent<PortalOpener>().StartCoroutine("Close");

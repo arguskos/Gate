@@ -10,6 +10,8 @@ public class PortalOpener : MonoBehaviour
     public GameObject part4;
 
     public GameObject portal;
+    public SoundManager SoundManager;
+    public GameObject Indicator;
     //private float _timer;
     private float TimeToOpen = 20;
     private bool _isOpen = false;
@@ -23,6 +25,14 @@ public class PortalOpener : MonoBehaviour
     private float MaxTime = 1.2f;
     private int _id;
 
+    private Vector3 pos1;
+    private Vector3 pos2;
+    private Vector3 pos3;
+    private Vector3 pos4;
+    private bool _wasShifted = false;
+
+
+
     // Use this for initialization
     public bool GetIsOpen()
     {
@@ -30,16 +40,24 @@ public class PortalOpener : MonoBehaviour
     }
     void Start()
     {
-
+        pos1 = part1.transform.position;
+        pos2 = part2.transform.position;
+        pos3 = part3.transform.position;
+        pos4 = part4.transform.position;
         ///StartCoroutine("Open", Color.red);
 
     }
-    public void Open(Color color, int id)
+
+    public void ChangeColor(Color color)
     {
         portal.GetComponent<Renderer>().material.color = color;
+        Indicator.GetComponent<Renderer>().material.color = color;
+    }
+    public void Open(int id)
+    {
         Opening = true;
         _id = id;
-
+        SoundManager.ToggleLoop(SoundManager.Sound.GateLoop);
     }
     public void Close()
     {
@@ -66,17 +84,25 @@ public class PortalOpener : MonoBehaviour
     private void CloseIntrnal()
     {
 
-        _timer -= Time.deltaTime;
-        if (_timer > 0.0f)
+        //_timer -= Time.deltaTime;
+        //Debug.Log(Vector3.SqrMagnitude(pos1 - part1.transform.position));
+        if (Vector3.SqrMagnitude(pos1 - part1.transform.position) > 0.00001)//_timer > 0.0f)
         {
             part1.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
             part2.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
             part3.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
             part4.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
+            _wasShifted = true;
         }
         else
         {
+            if (_wasShifted)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.GateClose);
+                SoundManager.ToggleLoop(SoundManager.Sound.GateLoop);
+            }
             _timer = 0;
+            _wasShifted = false;
         }
     }
 
@@ -147,9 +173,9 @@ public class PortalOpener : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Machinable" && other.GetComponent<ObjectsPortalID>().PortalId == _id&& !other.GetComponent<ViveGrip_Grabbable>().Grabbed)
+        if (other.tag == "Machinable" && other.GetComponent<ObjectsPortalID>().PortalId == _id && !other.GetComponent<ViveGrip_Grabbable>().Grabbed)
         {
-            
+
             Destroy(other.gameObject);
         }
         if (other.attachedRigidbody)
