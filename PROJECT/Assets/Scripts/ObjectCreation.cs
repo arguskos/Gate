@@ -28,7 +28,7 @@ public class ObjectCreation : MonoBehaviour {
         created.GetComponent<Renderer>().material.color = Colors[id-1];
         created.GetComponent<ObjectsPortalID>().PortalId = id;
         created.GetComponent<ViveGrip_Grabbable>().enabled = true;
-        float random = Random.Range(0.5f, 5f);
+        float random = Random.Range(0.5f, 3f);
         created.GetComponent<Transform>().localScale = new Vector3(0.136f * random, 0.136f * random, 0.136f * random);
     }
 

@@ -81,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Conveir.cs" />
     <Compile Include="Assets\Scripts\BoxHelper.cs" />
     <Compile Include="Assets\Scripts\CameraHelper.cs" />
     <Compile Include="Assets\Scripts\ConstarinRotation.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\OvenInteraction.cs" />
     <Compile Include="Assets\Scripts\PackageHelper.cs" />
     <Compile Include="Assets\Scripts\PortalOpener.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

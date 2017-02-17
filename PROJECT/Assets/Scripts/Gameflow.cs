@@ -37,15 +37,17 @@ public class Gameflow : MonoBehaviour {
             {
                 _level++;
                 _currentObject = 0;
-                CameraHelper.UpdateText("Packages Left: " + (LevelAmmountIems[_level] - _currentObject).ToString());
 
                 if (_level == _levels)
                 {
                     Debug.Log("ENDING");
                     CameraHelper.UpdateText("Game Over");
                     GameOver = true;
-                    Application.LoadLevel(0);
+                   // Application.LoadLevel(0);
                 }
+                if (!GameOver)
+                    CameraHelper.UpdateText("Packages Left: " + (LevelAmmountIems[_level] - _currentObject).ToString());
+
             }
         }
     }
