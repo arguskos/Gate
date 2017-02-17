@@ -5,33 +5,98 @@ using UnityEngine;
 public class buttons : MonoBehaviour {
 
     public Camera[] cameras = new Camera[5];
-    public byte currCam = 0;
+    public byte currCam = 3;
     public GameObject shrinker;
     public GameObject packer;
     public GameObject box;
+    public Light light1;
+    public Light light2;
+    public Light light3;
+    public Light allLight;
     public Vector3 boxPos = new Vector3(0.34F, 2.3F, 0.79F);
     public Vector3 boxRot = new Vector3(-90,0,0);
+    private bool cameraInUse = false;
+    private bool inviro = true;
+    public float gravity = -1;
+    private float gravDegradeSpeed = 0.0025F;
+    private float gravUp = 0.25F;
+    public float lightQuali = 1;
+    private float lightDegradeSpeed = 0.0035F;
+    private float lightUp = 0.10F;
+    private bool gravSelected = false;
+    private bool lightSelected = false;
+    private bool resourceSelected = false;
+    private bool leftHeld = false;
+    private bool rightHeld = false;
 
     // Use this for initialization
     void Start () {
-        cameras[0].enabled = true;
+        cameras[0].enabled = false;
         cameras[1].enabled = false;
         cameras[2].enabled = false;
-        cameras[3].enabled = false;
+        cameras[3].enabled = true;
         cameras[4].enabled = false;
+        StartCoroutine(enviro());
     }
 
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown("right"))
+        if (0.45 < lightQuali && lightQuali <= 0.75 )
         {
-            cameraControl("next");
+            Debug.Log("licht 1 gespronge");
+            light1.enabled = false;
         }
-        if (Input.GetKeyDown("left"))
+        else if(0 < lightQuali && lightQuali <= 0.45)
         {
-            cameraControl("back");
+            Debug.Log("light 2 gespronge");
+            light2.enabled = false;
+        }
+        else if(lightQuali <= 0)
+        {
+            Debug.Log("light 3 gespronge doe nu toch iet");
+            light3.enabled = false;
+            allLight.enabled = false;
+        }
+
+
+        if (Input.GetKeyDown("a"))
+        {
+            spawnBox();
+            Debug.Log("aha");
+        }
+        if (Input.GetKeyDown("b"))
+	    {
+            inviroFix("left");
+	    }
+        if (Input.GetKeyUp("b"))
+        {
+            inviroFix("lReturn");
+        }
+        if (Input.GetKeyDown("n"))
+        {
+            inviroFix("right");
+        }
+        if (Input.GetKeyUp("n"))
+        {
+            inviroFix("rReturn");
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            miniGames("gravity");
+        }
+        if (Input.GetKeyUp("w"))
+        {
+            miniGames("gReturn");
+        }
+        if (Input.GetKeyDown("x"))
+        {
+            miniGames("lights");
+        }
+        if (Input.GetKeyUp("x"))
+        {
+            miniGames("lReturn");
         }
         if (Input.GetKey("up"))
         {
@@ -40,6 +105,30 @@ public class buttons : MonoBehaviour {
         if (Input.GetKey("down"))
         {
             buttonControl("down");
+        }
+        if (Input.GetKeyDown("right"))
+        {
+            cameraControl("packagerV");
+        }
+        if (Input.GetKeyDown("left"))
+        {
+            cameraControl("shrinkerV");
+        }
+        if (Input.GetKeyDown("enter"))
+        {
+            cameraControl("portalV");
+        }
+        if (Input.GetKeyUp("enter"))
+        {
+            cameraControl("return0");
+        }
+        if (Input.GetKeyUp("left"))
+        {
+            cameraControl("return1");
+        }
+        if (Input.GetKeyUp("right"))
+        {
+            cameraControl("return2");
         }
         if (Input.GetKeyDown("space"))
         {
@@ -128,7 +217,7 @@ public class buttons : MonoBehaviour {
         #region Button outputs
 
         //ouput constructor
-        #region oneZero
+        #region open gate
         if (oneZeroButton == true)
         {
             Debug.Log("oneZero : pressed and held");
@@ -143,7 +232,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region oneOne
+        #region next gate
         if (oneOneButton == true)
         {
             Debug.Log("oneOne : pressed and held");
@@ -158,7 +247,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region oneTwo
+        #region prev gate
         if (oneTwoButton == true)
         {
             Debug.Log("oneTwo : pressed and held");
@@ -173,93 +262,103 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region oneThree
+        #region button b
         if (oneThreeButton == true)
         {
-            Debug.Log("oneThree : pressed and held");
+            //Debug.Log("oneThree : pressed and held");
         }
         if (oneThreeDown == true)
         {
-            Debug.Log(" oneThree : pressed once");
+            //Debug.Log(" oneThree : pressed once");
+            inviroFix("left");
         }
         if (oneThreeUp == true)
         {
-            Debug.Log("oneThree : released");
+            //Debug.Log("oneThree : released");
+            inviroFix("lReturn");
         }
         #endregion
 
-        #region oneFour
+        #region button a
         if (oneFourButton == true)
         {
-            Debug.Log("oneFour : pressed and held");
+            //Debug.Log("oneFour : pressed and held");
         }
         if (oneFourDown == true)
         {
-            Debug.Log(" oneFour : pressed once");
+            //Debug.Log(" oneFour : pressed once");
+            inviroFix("right");
         }
         if (oneFourUp == true)
         {
-            Debug.Log("oneFour : released");
+            //Debug.Log("oneFour : released");
+            inviroFix("rReturn");
         }
         #endregion
 
-        #region oneFive
+        #region obj spawn
         if (oneFiveButton == true)
         {
-            Debug.Log("oneFive : pressed and held");
+            //Debug.Log("oneFive : pressed and held");
         }
         if (oneFiveDown == true)
         {
-            Debug.Log(" oneFive : pressed once");
+            //Debug.Log(" oneFive : pressed once");
+            //spawn obj
         }
         if (oneFiveUp == true)
         {
-            Debug.Log("oneFive : released");
+            //Debug.Log("oneFive : released");
         }
         #endregion
 
-        #region oneSix
+        #region select grav
         if (oneSixButton == true)
         {
-            Debug.Log("oneSix : pressed and held");
+            //Debug.Log("oneSix : pressed and held");
         }
         if (oneSixDown == true)
         {
-            Debug.Log(" onesix : pressed once");
+            //Debug.Log(" onesix : pressed once");
+            miniGames("gravity");
         }
         if (oneSixUp == true)
         {
-            Debug.Log("oneSix : released");
+            //Debug.Log("oneSix : released");
+            miniGames("gReturn");
         }
         #endregion
 
-        #region oneSeven
+        #region select light
         if (oneSevenButton == true)
         {
-            Debug.Log("oneSeven : pressed and held");
+            //Debug.Log("oneSeven : pressed and held");
         }
         if (oneSevenDown == true)
         {
-            Debug.Log(" oneSeven : pressed once");
+            //Debug.Log(" oneSeven : pressed once");
+            miniGames("lights");
         }
         if (oneSevenUp == true)
         {
-            Debug.Log("oneSeven : released");
+            //Debug.Log("oneSeven : released");
+            miniGames("lReturn");
         }
         #endregion
 
-        #region oneEight
+        #region spawn enmpty box
         if (oneEightButton == true)
         {
-            Debug.Log("oneEight : pressed and held");
+            //Debug.Log("oneEight : pressed and held");
         }
         if (oneEightDown == true)
         {
-            Debug.Log(" oneEight : pressed once");
+            //Debug.Log(" oneEight : pressed once");
+            spawnBox();
         }
         if (oneEightUp == true)
         {
-            Debug.Log("oneEight : released");
+            //Debug.Log("oneEight : released");
         }
         #endregion
 
@@ -362,7 +461,7 @@ public class buttons : MonoBehaviour {
         }
         #endregion
 
-        #region Camera toggle next
+        #region Camera packager view
         if (twoSixButton == true)
         {
             //Debug.Log("twoSix : pressed and held");
@@ -371,15 +470,16 @@ public class buttons : MonoBehaviour {
         {
             //Debug.Log(" twosix : pressed once");
             Debug.Log("Toggle camera next");
-            cameraControl("next");
+            cameraControl("packagerV");
         }
         if (twoSixUp == true)
         {
             //Debug.Log("twoSix : released");
+            cameraControl("return2");
         }
         #endregion
 
-        #region camera toggle back  
+        #region shrinker view 
         if (twoSevenButton == true)
         {
             //Debug.Log("twoSeven : pressed and held");
@@ -387,16 +487,17 @@ public class buttons : MonoBehaviour {
         if (twoSevenDown == true)
         {
             //Debug.Log(" twoSeven : pressed once");
-            Debug.Log("Toggle camera back");
-            cameraControl("back");
+            //Debug.Log("Toggle camera back");
+            cameraControl("shrinkerV");
         }
         if (twoSevenUp == true)
         {
             //Debug.Log("twoSeven : released");
+            cameraControl("return1");
         }
         #endregion
 
-        #region Light toggle
+        #region portal view
         if (twoEightButton == true)
         {
             //Debug.Log("twoEight : pressed and held");
@@ -404,11 +505,12 @@ public class buttons : MonoBehaviour {
         if (twoEightDown == true)
         {
             //Debug.Log(" twoEight : pressed once");
-            Debug.Log("turn on/off light");
+            cameraControl("portalV");
         }
         if (twoEightUp == true)
         {
             //Debug.Log("twoEight : released");
+            cameraControl("return0");
         }
         #endregion
 
@@ -419,26 +521,52 @@ public class buttons : MonoBehaviour {
     private void cameraControl(string input) 
     {
         byte newCam = currCam;
-        if (input == "next")
+        if (cameraInUse == false)
         {
-            if (currCam >= 4)
+            switch (input)
             {
-                newCam = 0;
+                case "portalV":
+                    newCam = 0;
+                    break;
+                case "shrinkerV":
+                    newCam = 1;
+                    break;
+                case "packagerV":
+                    newCam = 2;
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                newCam++;
-            }
+            cameraInUse = true;
+            
         }
-        else if (input == "back")
+        else
         {
-            if (currCam <= 0)
+            switch (currCam)
             {
-                newCam = 4;
-            }
-            else
-            {
-                newCam--;
+                case 0:
+                    if (input == "return0")
+                    {
+                        newCam = 3;
+                        cameraInUse = false;
+                    }
+                    break;
+                case 1:
+                    if (input == "return1")
+                    {
+                        newCam = 3;
+                        cameraInUse = false;                        
+                    }
+                    break;
+                case 2:
+                    if (input == "return2")
+                    {
+                        newCam = 3;
+                        cameraInUse = false;                        
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         GetComponent<CameraHelper>().OnChangeCamera(newCam);
@@ -466,7 +594,7 @@ public class buttons : MonoBehaviour {
                 //send to ...
                 break;
             case 4 :
-                spawnBox(input);
+                //spawnBox(input);
                 break;
             default:
                 break;
@@ -476,12 +604,110 @@ public class buttons : MonoBehaviour {
     {
         rec.SendMessage("buttonPress", mssg);
     }
-    private void spawnBox(string input) 
+    private void spawnBox() 
     {
-        if (input == "act1")
-        {
-            Instantiate(box, boxPos, Quaternion.Euler(boxRot)); 
-        }        
+            Instantiate(box, boxPos, Quaternion.Euler(boxRot));       
     }
+    IEnumerator enviro()
+    {
+        do
+        {
+            if (gravity < 1)
+            {
+                gravity = gravity + gravDegradeSpeed;
+                Physics.gravity = new Vector3(0, gravity, 0);
+            }
+            if (lightQuali > 0)
+            {
+                lightQuali = lightQuali - lightDegradeSpeed;
+            }
+            yield return 0; 
+           
+        } while (inviro);
+    }
+    private void miniGames(string input) 
+    {
+        if (resourceSelected == false)
+        {
+            if (input == "gravity")
+            {
+                gravSelected = true;
+                resourceSelected = true; 
+            }
+            else if(input == "lights")
+            {
+                lightSelected = true;
+                resourceSelected = true;
+            }
+        }
+        else if (input == "gReturn")
+        {
+            gravSelected = false;
+            resourceSelected = false;
+        }
+        else if (input == "lReturn")
+        {
+            lightSelected = false;
+            resourceSelected = false;
+        }
+    }
+    private void gravControl(string input) 
+    {
+        if (gravSelected == true)
+        {
+            if (input == "left" || input == "right")
+            {
+                Debug.Log("ah");
+                if (gravity > -1)
+                {
+                    gravity = gravity - 0.25F;
+                    Physics.gravity = new Vector3(0, gravity, 0);
+                }
 
+            }
+        }
+
+    }
+    private void inviroFix(string input)
+    {
+        if (lightSelected == true)
+        {
+            if (input == "left" || input == "right")
+            {
+                if (lightQuali <= 1)
+                {
+                    lightQuali += lightUp;
+                    if (lightQuali > 0)
+                    {
+                        light3.enabled = true;
+                        allLight.enabled = true;
+                        if (lightQuali > 0.45)
+                        {
+                            light2.enabled = true;
+                            if (lightQuali > 0.75)
+                            {
+                                light1.enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (gravSelected == true)
+        {
+            if (input == "left" || input == "right")
+            {
+                Debug.Log("ah");
+                if (gravity > -1)
+                {
+                    gravity = gravity - 0.25F;
+                    Physics.gravity = new Vector3(0, gravity, 0);
+                }
+
+            }
+        }
+
+    }
 }
+
+

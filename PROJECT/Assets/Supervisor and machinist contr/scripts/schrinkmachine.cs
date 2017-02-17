@@ -36,6 +36,8 @@ public class schrinkmachine : MonoBehaviour {
         if (other.tag == "Machinable" || other.tag == "Object")
         {
             objectInSchrinker = false;
+            timesShrunk = 0;
+            TimesGrown = 0;
         }
     }
     void buttonPress(string input) 
