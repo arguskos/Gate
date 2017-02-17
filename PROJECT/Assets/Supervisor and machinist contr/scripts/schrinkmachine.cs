@@ -51,14 +51,14 @@ public class schrinkmachine : MonoBehaviour {
             {
                 //toShrinkObj.transform.localScale = toShrinkObj.transform.localScale * 1.0F;
                 //grow
-                SundManager.PlaySound("Button");
+                SundManager.PlaySound(SoundManager.Sound.Button);
                 StartCoroutine(sizeShange("big"));
             }
             else if(input == "act2")
             {
                 //toShrinkObj.transform.localScale = toShrinkObj.transform.localScale / 2;  
                 //shrink
-                SundManager.PlaySound("Button");
+                SundManager.PlaySound(SoundManager.Sound.Button);
                 StartCoroutine(sizeShange("small"));
             }
         }
@@ -78,7 +78,7 @@ public class schrinkmachine : MonoBehaviour {
             for (int i = 0; i < 20; i++)
             {
                 //Upgrade
-                SundManager.PlaySound("Upgrade");
+                SundManager.PlaySound(SoundManager.Sound.Upgrade);
                 toShrinkObj.transform.localScale = toShrinkObj.transform.localScale * 1.02F;
                 yield return 0;
             }
@@ -95,7 +95,7 @@ public class schrinkmachine : MonoBehaviour {
         {
             for (int i = 0; i < 20; i++)
             {
-                SundManager.PlaySound("Upgrade");
+                SundManager.PlaySound(SoundManager.Sound.Upgrade);
                 toShrinkObj.transform.localScale = toShrinkObj.transform.localScale / 1.02F;
                 yield return 0;
             }
