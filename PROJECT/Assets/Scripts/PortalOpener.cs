@@ -178,7 +178,7 @@ public class PortalOpener : MonoBehaviour
 
             Destroy(other.gameObject);
         }
-        if (other.attachedRigidbody)
+        else if (other.attachedRigidbody)
             other.attachedRigidbody.AddForce(Vector3.right * 200);
     }
     void Update()
