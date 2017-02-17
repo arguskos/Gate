@@ -4,18 +4,48 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
-    public AudioSource[] sounds = new AudioSource[10];
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+    //Initialize
+    public AudioSource[] soundArray = new AudioSource[9];
+
+
+    //Play sound function
     void PlaySound(string soundName)
     {
-        for(int i = 0; i < sounds.Length; i++)
+        for(int i = 0; i < soundArray.Length; i++)
         {
-            //Do Nothing
+            if (soundArray[i].name == soundName)
+            {
+                soundArray[i].Play();
+            }
         }
     }
+
+    //Loop sound function
+    void ToggleLoop(string loopName)
+    {
+        for (int i = 0; i < soundArray.Length; i++)
+        {
+            if ((soundArray[i].name == loopName) && (!soundArray[i].isPlaying))
+            {
+                soundArray[i].Play();
+            }
+
+            else if (soundArray[i].name == loopName)
+            {
+                soundArray[i].Stop();
+            }
+        }
+    }
+
+
+    //Example of use
+    /*void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            PlaySound("Error");
+            ToggleLoop("MachineLoop");
+        }
+    }*/
 }
