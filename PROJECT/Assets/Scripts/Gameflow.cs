@@ -6,35 +6,45 @@ public class Gameflow : MonoBehaviour {
 
     // Use this for initialization
     private int _level;
-    private int _levels = 1;
+    private int _levels = 2;
     private int _currentObject;
     public int[] LevelAmmountIems;
-    public GameObject[] GameObjects ;
-
+    public CameraHelper CameraHelper;
     public GameObject ObjectSpawner;
     public bool GameOver = false;
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        CameraHelper.UpdateText("Packages Left: " + (LevelAmmountIems[_level] - _currentObject).ToString());
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+		if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Application.LoadLevel(0);
+        }
+    }
     public void Spawn()
     {
         if (!GameOver)
         {
             int id = Random.Range(1, 10);
-            ObjectSpawner.GetComponent<ObjectCreation>().Spawn(GameObjects[_currentObject], id);
+            ObjectSpawner.GetComponent<ObjectCreation>().Spawn( id);
             _currentObject++;
+
+            CameraHelper.UpdateText("Packages Left: " + (LevelAmmountIems[_level] - _currentObject).ToString());
             if (_currentObject >= LevelAmmountIems[_level])
             {
                 _level++;
+                _currentObject = 0;
+                CameraHelper.UpdateText("Packages Left: " + (LevelAmmountIems[_level] - _currentObject).ToString());
+
                 if (_level == _levels)
                 {
                     Debug.Log("ENDING");
+                    CameraHelper.UpdateText("Game Over");
                     GameOver = true;
+                    Application.LoadLevel(0);
                 }
             }
         }

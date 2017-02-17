@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class buttons : MonoBehaviour {
 
@@ -18,10 +19,10 @@ public class buttons : MonoBehaviour {
     private bool cameraInUse = false;
     private bool inviro = true;
     public float gravity = -1;
-    private float gravDegradeSpeed = 0.0025F;
+    private float gravDegradeSpeed = 0.00125F;
     private float gravUp = 0.25F;
     public float lightQuali = 1;
-    private float lightDegradeSpeed = 0.0035F;
+    private float lightDegradeSpeed = 0.000175F;
     private float lightUp = 0.10F;
     private bool gravSelected = false;
     private bool lightSelected = false;
@@ -29,6 +30,10 @@ public class buttons : MonoBehaviour {
     private bool leftHeld = false;
     private bool rightHeld = false;
 
+    public SoundManager SundManager;
+    public GameObject Bar1;
+
+    public GameObject Bar2;
     // Use this for initialization
     void Start () {
         cameras[0].enabled = false;
@@ -355,6 +360,7 @@ public class buttons : MonoBehaviour {
         {
             //Debug.Log(" oneEight : pressed once");
             spawnBox();
+            SundManager.PlaySound("Button");
         }
         if (oneEightUp == true)
         {
@@ -376,6 +382,7 @@ public class buttons : MonoBehaviour {
         if (twoZeroUp == true)
         {
             //Debug.Log("twoZero : released");
+            //SundManager.ToggleLoop("MachineLoop");
         }
         #endregion
 
@@ -441,6 +448,7 @@ public class buttons : MonoBehaviour {
         if (twoFourUp == true)
         {
             //Debug.Log("oneFour : released");
+            //SundManager.ToggleLoop("MachineLoop");
         }
         #endregion
 
@@ -526,12 +534,15 @@ public class buttons : MonoBehaviour {
             switch (input)
             {
                 case "portalV":
+                    SundManager.PlaySound("Button");
                     newCam = 0;
                     break;
                 case "shrinkerV":
+                    SundManager.PlaySound("Button");
                     newCam = 1;
                     break;
                 case "packagerV":
+                    SundManager.PlaySound("Button");
                     newCam = 2;
                     break;
                 default:
@@ -616,10 +627,14 @@ public class buttons : MonoBehaviour {
             {
                 gravity = gravity + gravDegradeSpeed;
                 Physics.gravity = new Vector3(0, gravity, 0);
+                Bar1.GetComponent<RectTransform>().sizeDelta = new Vector2(25, (1+gravity)* 250/2);
+
             }
             if (lightQuali > 0)
             {
                 lightQuali = lightQuali - lightDegradeSpeed;
+                Bar2.GetComponent<RectTransform>().sizeDelta = new Vector2(25, lightQuali * 250);
+
             }
             yield return 0; 
            
@@ -629,6 +644,7 @@ public class buttons : MonoBehaviour {
     {
         if (resourceSelected == false)
         {
+            SundManager.PlaySound("Button");
             if (input == "gravity")
             {
                 gravSelected = true;
@@ -672,8 +688,10 @@ public class buttons : MonoBehaviour {
     {
         if (lightSelected == true)
         {
+            
             if (input == "left" || input == "right")
             {
+                SundManager.PlaySound("Button");
                 if (lightQuali <= 1)
                 {
                     lightQuali += lightUp;
@@ -697,6 +715,7 @@ public class buttons : MonoBehaviour {
         {
             if (input == "left" || input == "right")
             {
+                SundManager.PlaySound("Button");
                 Debug.Log("ah");
                 if (gravity > -1)
                 {

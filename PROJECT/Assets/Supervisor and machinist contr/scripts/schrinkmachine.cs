@@ -9,6 +9,7 @@ public class schrinkmachine : MonoBehaviour {
     private byte timesShrunk = 0;
     private byte TimesGrown = 0;
     private bool beingtampered = false;
+    public SoundManager SundManager;
 
     // Use this for initialization
     void Start() {
@@ -50,12 +51,14 @@ public class schrinkmachine : MonoBehaviour {
             {
                 //toShrinkObj.transform.localScale = toShrinkObj.transform.localScale * 1.0F;
                 //grow
+                SundManager.PlaySound("Button");
                 StartCoroutine(sizeShange("big"));
             }
             else if(input == "act2")
             {
                 //toShrinkObj.transform.localScale = toShrinkObj.transform.localScale / 2;  
                 //shrink
+                SundManager.PlaySound("Button");
                 StartCoroutine(sizeShange("small"));
             }
         }
@@ -74,6 +77,8 @@ public class schrinkmachine : MonoBehaviour {
         {
             for (int i = 0; i < 20; i++)
             {
+                //Upgrade
+                SundManager.PlaySound("Upgrade");
                 toShrinkObj.transform.localScale = toShrinkObj.transform.localScale * 1.02F;
                 yield return 0;
             }
@@ -90,6 +95,7 @@ public class schrinkmachine : MonoBehaviour {
         {
             for (int i = 0; i < 20; i++)
             {
+                SundManager.PlaySound("Upgrade");
                 toShrinkObj.transform.localScale = toShrinkObj.transform.localScale / 1.02F;
                 yield return 0;
             }

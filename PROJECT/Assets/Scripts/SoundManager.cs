@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     //Initialize
     public AudioSource[] soundArray = new AudioSource[9];
 
-    public enum Sound { Button, Error, GateLoop, GateClose, GateOpen, Thu, Fri };
+    public enum Sound { Button, Error, GateLoop, GateClose, GateOpen, MachineLoop, Success, Telepor,Upgrade};
 
     //Play sound function
     public void PlaySound(string soundName)

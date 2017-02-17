@@ -7,6 +7,7 @@ public class KeyBordKeys : MonoBehaviour
     public GameObject Portal;
     public GameObject Gameflow;
     public SoundManager SundManager;
+    public CameraHelper CameraHelper;
     public List<Color> Colors =new List<Color>();
     private int _portalId = 1;
     // Use this for initialization
@@ -78,7 +79,7 @@ public class KeyBordKeys : MonoBehaviour
         bool twoEightUp = Input.GetButtonUp("Side 2 Button 8");
 
         // PORTAL KEYS
-        if (Input.GetKeyDown(KeyCode.Q) || oneEightDown == true)
+        if (Input.GetKeyDown(KeyCode.Q) || oneTwoDown == true)
         //Debug.Log("Sdadsd");
         {
             // if (!Portal.GetComponent<PortalOpener>().GetIsOpen())
@@ -98,7 +99,7 @@ public class KeyBordKeys : MonoBehaviour
 
 
         }
-        if (Input.GetKeyDown(KeyCode.W) || oneSevenDown == true)
+        if (Input.GetKeyDown(KeyCode.W) || oneOneDown == true)
         {
             //Portal.GetComponent<PortalOpener>().Open();
             if (_portalId<9)
@@ -113,7 +114,7 @@ public class KeyBordKeys : MonoBehaviour
             SundManager.PlaySound("Button");
 
         }
-        if (Input.GetKeyDown(KeyCode.E) || oneSixDown == true)
+        if (Input.GetKeyDown(KeyCode.E) || oneZeroDown == true)
         {
             Portal.GetComponent<PortalOpener>().Open(_portalId);
             SundManager.PlaySound(SoundManager.Sound.GateOpen);
@@ -139,11 +140,12 @@ public class KeyBordKeys : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.R) || twoEightDown)
+        if (Input.GetKeyDown(KeyCode.R) || oneFiveDown)
         //Debug.Log("sdas");
         {
             Gameflow.GetComponent<Gameflow>().Spawn();
             SundManager.PlaySound("Button");
+
 
         }
 
@@ -153,7 +155,7 @@ public class KeyBordKeys : MonoBehaviour
             Input.GetKeyUp(KeyCode.E) ||
 
 
-           oneSixUp 
+           oneZeroUp 
             )
         //if (Portal.GetComponent<PortalOpener>().GetIsOpen())
         //Portal.GetComponent<PortalOpener>().StartCoroutine("Close");

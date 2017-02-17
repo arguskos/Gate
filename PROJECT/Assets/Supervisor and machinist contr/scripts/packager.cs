@@ -13,9 +13,10 @@ public class packager : MonoBehaviour {
     public float machineSpeed = 0.005F;
     public float maxHeight = 1.605F;
     public float minHeight = 0.982F;
+    public SoundManager SundManager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -50,11 +51,14 @@ public class packager : MonoBehaviour {
         if (input == "up" && transform.position.y <= maxHeight)
         {
             Debug.Log("upwego");
+            //ToggleLoop
+            //SundManager.PlaySound("Button");
             transform.Translate(Vector3.forward * machineSpeed);
         }
         if (input == "down" && transform.position.y >= minHeight)
         {
             Debug.Log("upwego");
+            //SundManager.PlaySound("Button");
             transform.Translate(Vector3.back * machineSpeed);
         }
         if (objectInPacker )
@@ -64,6 +68,7 @@ public class packager : MonoBehaviour {
             if (input == "act1")
             {
                 //pack package
+                //SundManager.PlaySound("Button");
                 packPac();
 
             }

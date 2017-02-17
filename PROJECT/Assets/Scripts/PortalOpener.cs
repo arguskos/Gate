@@ -86,7 +86,7 @@ public class PortalOpener : MonoBehaviour
 
         //_timer -= Time.deltaTime;
         //Debug.Log(Vector3.SqrMagnitude(pos1 - part1.transform.position));
-        if (Vector3.SqrMagnitude(pos1 - part1.transform.position) > 0.00001)//_timer > 0.0f)
+        if (Vector3.SqrMagnitude(pos1 - part1.transform.position) > 0.000001)//_timer > 0.0f)
         {
             part1.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);
             part2.GetComponent<Transform>().Translate(-Vector3.forward / 3 * Time.deltaTime);

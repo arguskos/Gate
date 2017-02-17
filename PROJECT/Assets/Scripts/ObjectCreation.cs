@@ -10,8 +10,8 @@ public class ObjectCreation : MonoBehaviour {
     public GameObject box;
     public Color[] Colors;
 	void Start () {
-		
-	}
+        Random.seed = 42;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,20 +22,22 @@ public class ObjectCreation : MonoBehaviour {
         //    Instantiate(ToCreate[0], transform.position, Quaternion.identity);
         //}
 	}
-    public void Spawn(GameObject obj,int id)
+    public void Spawn(int id)
     {
-        var created=Instantiate(obj, transform.position, Quaternion.identity);
+        var created=Instantiate(box, transform.position, Quaternion.identity);
         created.GetComponent<Renderer>().material.color = Colors[id-1];
         created.GetComponent<ObjectsPortalID>().PortalId = id;
         created.GetComponent<ViveGrip_Grabbable>().enabled = true;
+        float random = Random.Range(0.5f, 5f);
+        created.GetComponent<Transform>().localScale = new Vector3(0.136f * random, 0.136f * random, 0.136f * random);
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Object")
-            Spawn(other.gameObject, other.GetComponent<ObjectsPortalID>().PortalId);
+            Spawn( other.GetComponent<ObjectsPortalID>().PortalId);
         if (other.tag == "Machinable")
-            Spawn(box, other.GetComponent<ObjectsPortalID>().PortalId);
+            Spawn( other.GetComponent<ObjectsPortalID>().PortalId);
             
     }
 
